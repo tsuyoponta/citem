@@ -12,7 +12,7 @@
 
 - has_many :posts
 
-## article テーブル
+## articles テーブル
 
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
