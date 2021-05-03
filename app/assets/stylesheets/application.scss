@@ -12,3 +12,21 @@
  *
  */
 @import "bootstrap";
+
+.alert-notice {
+  @extend .alert-info;
+}
+
+.alert-alert {
+  @extend .alert-danger;
+}
+
+.field_with_errors {
+  display: contents;
+}
+
+.card-img-overlay{
+  padding: 0;
+  top: 35%;
+  text-align: center;
+}
