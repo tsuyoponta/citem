@@ -3,11 +3,11 @@ class ArticlesController < ApplicationController
   end
 
   def new
-
+    @artilce = Article.new
   end
 
   def create
-    
+
   end
 
   private
