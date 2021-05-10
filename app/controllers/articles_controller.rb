@@ -2,6 +2,7 @@ class ArticlesController < ApplicationController
   before_action :authenticate_user!, except: [:index]
 
   def index
+    @articles = Article.includes(:user).order(id: 'DESC')
   end
 
   def new
