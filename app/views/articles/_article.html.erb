@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="card-columns">
+    <% @articles.each do |article| %>
+        <div class="card shadow-sm mb-4">
+          <div class="bd-placeholder-img card-img-top" >
+            <%= image_tag article.image, class: "img-fluid" %>
+          </div>
+
+          <div class="card-body">
+            <h4><%= article.title %></h4>
+            <p class="card-text text-truncate">
+              <%= article.text %>
+            </p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <%= link_to "詳細", "#", class: "btn btn-sm btn-outline-secondary" %>
+                <% if user_signed_in? && current_user.id == article.user_id %>
+                <%= link_to "編集", "#", class: "btn btn-sm btn-outline-secondary" %>
+                <%= link_to "削除", "#", class: "btn btn-sm btn-outline-danger" %>
+                <% end %>
+              </div>
+              <small class="text-muted">9 mins</small>
+            </div>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>
