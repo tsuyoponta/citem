@@ -1,5 +1,5 @@
 <%= form_with model: @article, local: true do |f| %>
-  <%= render 'layouts/flash_messages' %>
+  <%= render 'layouts/error_messages', model: f.object %>
   
   <div class="form-group">
     <%= f.label :image, "画像" %><span class="badge badge-info ml-3">必須</span>
