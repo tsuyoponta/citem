@@ -16,7 +16,7 @@
                 <%= link_to "詳細", "#", class: "btn btn-sm btn-outline-secondary" %>
                 <% if user_signed_in? && current_user.id == article.user_id %>
                 <%= link_to "編集", edit_article_path(article.id), class: "btn btn-sm btn-outline-secondary" %>
-                <%= link_to "削除", "#", class: "btn btn-sm btn-outline-danger" %>
+                <%= link_to "削除", article_path(article.id), method: :delete, class: "btn btn-sm btn-outline-danger" %>
                 <% end %>
               </div>
               <small class="text-muted">9 mins</small>
