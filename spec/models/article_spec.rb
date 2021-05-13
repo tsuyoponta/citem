@@ -16,22 +16,22 @@ RSpec.describe Article, type: :model do
       it 'imageが空では登録できない' do
         @article.image = nil
         @article.valid?
-        expect(@article.errors.full_messages).to include("画像を選択してください")
+        expect(@article.errors.full_messages).to include('画像を選択してください')
       end
       it 'titleが空では登録できない' do
         @article.title = ''
         @article.valid?
-        expect(@article.errors.full_messages).to include("タイトルを入力してください")
+        expect(@article.errors.full_messages).to include('タイトルを入力してください')
       end
       it 'textが空では登録できない' do
         @article.text = ''
         @article.valid?
-        expect(@article.errors.full_messages).to include("本文を入力してください")
+        expect(@article.errors.full_messages).to include('本文を入力してください')
       end
       it 'ユーザーが紐付いていないと登録できない' do
         @article.user = nil
         @article.valid?
-        expect(@article.errors.full_messages).to include("ユーザーを入力してください")
+        expect(@article.errors.full_messages).to include('ユーザーを入力してください')
       end
     end
   end

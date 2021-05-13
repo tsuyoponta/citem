@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :article do
-    title               {"タイトル"}
-    text                {"テキスト"}
+    title               { 'タイトル' }
+    text                { 'テキスト' }
     association :user
 
     after(:build) do |article|
