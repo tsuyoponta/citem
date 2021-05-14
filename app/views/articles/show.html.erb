@@ -1,0 +1,16 @@
+<div class="container mt-3 mb-5 p-5 rounded shadow">
+  <div class="mb-5">
+    <%= image_tag @article.image, class: "img-thumbnail" %>
+  </div>
+  <div class="h2 my-5 text-center">
+    <%= @article.title %>
+  </div>
+  <div class="lead text-center">
+    <%= @article.text %>
+  </div>
+  <% if user_signed_in? && current_user.id == @article.user.id %>
+  <div class="my-5 px-5 border-top"></div>
+    <%= link_to "編集", edit_article_path(@article.id), class: "mb-4 btn btn-outline-secondary btn-block" %>
+    <%= link_to "削除", article_path(@article.id), method: :delete, class: "btn btn-outline-danger btn-block" %>
+  <% end %>
+</div>
