@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
-  before_action :set_article, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_article, except: [:index, :new, :create]
   before_action :move_to_index, only: [:edit, :update]
 
   def index
@@ -18,6 +18,9 @@ class ArticlesController < ApplicationController
     else
       render :new
     end
+  end
+
+  def show
   end
 
   def edit
