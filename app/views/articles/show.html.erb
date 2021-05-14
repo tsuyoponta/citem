@@ -5,7 +5,7 @@
   <div class="h2 my-5 text-center">
     <%= @article.title %>
   </div>
-  <div class="lead text-center">
+  <div class="text-center">
     <%= @article.text %>
   </div>
   <% if user_signed_in? && current_user.id == @article.user.id %>
