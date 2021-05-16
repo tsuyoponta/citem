@@ -51,5 +51,6 @@ test:
 production:
   <<: *default
   database: citem_production
-  username: citem
-  password: <%= ENV['CITEM_DATABASE_PASSWORD'] %>
+  username: root
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  socket: /var/lib/mysql/mysql.sock
