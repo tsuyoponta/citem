@@ -1,19 +1,19 @@
 <div class="container p-5">
   <div class="shadow p-4 mb-5 bg-white rounded">
-    <h1 class="text-center text-monospace">アカウント編集</h1>
+    <h1 class="text-center text-monospace">ユーザー編集</h1>
 
     <%= form_with model: current_user, url: user_registration_path do |f| %>
       <%= bootstrap_devise_error_messages! %>
 
       <div class="form-group">
         <%= f.label :nickname %>
-        <%= f.text_field :nickname, autofocus: true, autocomplete: 'nickname', class: 'form-control' %>
-        <small class="form-text text-muted">（10文字以内）</small>
+        <%= f.text_field :nickname, autofocus: true, autocomplete: 'nickname', placeholder: 'ニックネームを入力', class: 'form-control' %>
+        <small class="form-text text-muted">10文字以内で入力してください</small>
       </div>
 
       <div class="form-group">
         <%= f.label :email %>
-        <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-control' %>
+        <%= f.email_field :email, autofocus: true, autocomplete: 'email', placeholder: 'Eメールを入力', class: 'form-control' %>
       </div>
 <%
 =begin
@@ -34,7 +34,7 @@
 %>
       <div class="form-group">
         <%= f.label :current_password %>
-        <%= f.password_field :current_password, autocomplete: 'current-password', class: 'form-control' %>
+        <%= f.password_field :current_password, autocomplete: 'current-password', placeholder: '現在のパスワードを入力', class: 'form-control' %>
 
         <small class="form-text text-muted"><%= t('.we_need_your_current_password_to_confirm_your_changes') %></small>
       </div>
