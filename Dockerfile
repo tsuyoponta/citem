@@ -5,15 +5,18 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
     && apt-get update -qq \
     && apt-get install -y nodejs yarn \
     && mkdir /citem
+
 WORKDIR /citem
+
 COPY Gemfile /citem/Gemfile
 COPY Gemfile.lock /citem/Gemfile.lock
-RUN bundle install
-COPY . /citem
 
+RUN bundle install
+
+COPY . /citem
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
-EXPOSE 80
+EXPOSE 3000
 
 CMD ["rails", "server", "-b", "0.0.0.0"]
