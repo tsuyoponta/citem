@@ -11,13 +11,13 @@ WORKDIR /citem
 COPY Gemfile /citem/Gemfile
 COPY Gemfile.lock /citem/Gemfile.lock
 
-RUN gem install bundler \
-    && bundle install
+RUN gem install bundler
+RUN bundle install
 
 COPY . /citem
 
-RUN mkdir -p tmp/sockets \
-    && mkdir -p tmp/pids
+RUN mkdir -p tmp/sockets
+RUN mkdir -p tmp/pids
 # COPY entrypoint.sh /usr/bin/
 # RUN chmod +x /usr/bin/entrypoint.sh
 # ENTRYPOINT ["entrypoint.sh"]
