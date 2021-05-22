@@ -18,6 +18,7 @@ COPY . /citem
 
 RUN mkdir -p tmp/sockets
 RUN mkdir -p tmp/pids
+
 # COPY entrypoint.sh /usr/bin/
 # RUN chmod +x /usr/bin/entrypoint.sh
 # ENTRYPOINT ["entrypoint.sh"]
