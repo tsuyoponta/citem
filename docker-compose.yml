@@ -28,7 +28,7 @@ services:
       - public-data:/citem/public
       - tmp-data:/citem/tmp
     ports:
-      - 80:80
+      - 8080:80
     # depends_on:
     #   - db
     # stdin_open: true
