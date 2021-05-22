@@ -1,25 +1,41 @@
 version: '3'
 services:
-  db:
-    image: mysql:5.6
-    environment:
-      MYSQL_ROOT_PASSWORD: tsuyoponta4127
-      MYSQL_DATABASE: root
-    ports:
-      - "4307:3306"
+  # db:
+  #   image: mysql:5.6
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: tsuyoponta4127
+  #     MYSQL_DATABASE: root
+  #   ports:
+  #     - "4307:3306"
+  #   volumes:
+  #     - mysql-data:/var/lib/mysql
+
+  app:
+    build: .
+    command: bundle exec puma -C config/puma.rb -e production
     volumes:
-      - mysql-data:/var/lib/mysql
+      - .:/myapp
+      - public-data:/myapp/public
+      - tmp-data:/myapp/tmp
+      - log-data:/myapp/log
+
   web:
     build: .
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    # command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+      context: containers/nginx
     volumes:
-      - .:/citem
+      # - .:/citem
+      - public-data:/citem/public
+      - tmp-data:/citem/tmp
     ports:
-      - "3001:3000"
-    depends_on:
-      - db
-    stdin_open: true
-    tty: true
+      - 80:80
+    # depends_on:
+    #   - db
+    # stdin_open: true
+    # tty: true
 volumes:
-  mysql-data:
-    driver: local
+  # mysql-data:
+  public-data:
+  tmp-data:
+  log-data:
+
