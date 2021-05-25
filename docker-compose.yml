@@ -1,41 +1,54 @@
 version: '3'
 services:
-  # db:
-  #   image: mysql:5.6
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: tsuyoponta4127
-  #     MYSQL_DATABASE: root
-  #   ports:
-  #     - "4307:3306"
-  #   volumes:
-  #     - mysql-data:/var/lib/mysql
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: user
+      MYSQL_ROOT_PASSWORD: tsuyoponta4127
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - citem-network
 
   app:
-    build: .
-    command: bundle exec puma -C config/puma.rb -e production
+    build:
+      context: .
+    command: bundle exec puma -C config/puma.rb
+    # command: bundle exec puma -C config/puma.rb -e production
     volumes:
       - .:/citem
       - public-data:/citem/public
       - tmp-data:/citem/tmp
       - log-data:/citem/log
+    ports:
+      - 3000:3000
+    networks:
+      - citem-network
+    depends_on:
+      - db
 
   web:
     build:
-    # command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
       context: containers/nginx
     volumes:
-      # - .:/citem
       - public-data:/citem/public
       - tmp-data:/citem/tmp
     ports:
-      - 8080:80
-    # depends_on:
-    #   - db
+      - 80:80
+    depends_on:
+      - app
+    networks:
+      - citem-network
     # stdin_open: true
     # tty: true
 volumes:
-  # mysql-data:
+  mysql-data:
   public-data:
   tmp-data:
   log-data:
 
+networks:
+  citem-network:
+    external: true
