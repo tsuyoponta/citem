@@ -16,8 +16,6 @@ COPY Gemfile.lock /citem/Gemfile.lock
 RUN bundle config --local set path 'vendor/bundle' \
     && bundle install
 
-COPY . /citem
-
 COPY start.sh /start.sh
 RUN chmod 744 /start.sh
 CMD ["sh", "/start.sh"]
