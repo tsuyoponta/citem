@@ -10,7 +10,11 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
 
 WORKDIR /citem
 
-RUN bundle install
+COPY Gemfile /citem/Gemfile
+COPY Gemfile.lock /citem/Gemfile.lock
+
+RUN bundle config --local set path 'vendor/bundle' \
+    && bundle install
 
 COPY . /citem
 
