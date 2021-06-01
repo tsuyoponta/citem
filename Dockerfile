@@ -11,7 +11,6 @@ WORKDIR /citem
 COPY Gemfile /citem/Gemfile
 COPY Gemfile.lock /citem/Gemfile.lock
 
-RUN gem install bundler
 RUN bundle install
 
 COPY . /citem
