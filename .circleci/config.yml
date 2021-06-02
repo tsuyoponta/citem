@@ -11,7 +11,6 @@ jobs:
     steps:
       - checkout:
           path: ~/citem
-      - ruby/bundle-install
       - ruby/install-deps
 
   checking:
@@ -40,7 +39,7 @@ jobs:
     working_directory: ~/citem
     steps:
       - checkout:
-        path: ~/citem
+          path: ~/citem
       - ruby/install-deps
       - ruby/rspec-test
 
@@ -50,8 +49,8 @@ workflows:
     jobs:
       - build
       - checking:
-        requires:
-          - build
+          requires:
+            - build
       - test:
-        requires:
-          - build
+          requires:
+            - build
