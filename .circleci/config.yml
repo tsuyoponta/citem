@@ -1,0 +1,56 @@
+version: 2.1
+
+orbs:
+  ruby: circleci/ruby@1.1.3
+
+jobs:
+  build:
+    docker:
+      - image: circleci/ruby:3.0.1
+    working_directory: ~/citem
+    steps:
+      - checkout:
+          path: ~/citem
+      - ruby/install-deps
+
+  checking:
+    docker:
+      - image: circleci/ruby:3.0.1
+    steps:
+      - checkout
+      - ruby/install-deps
+      - ruby/rubocop-check:
+          format: progress
+          label: Inspecting with Rubocop
+
+  test:
+    docker:
+      - image: circleci/ruby:3.0.1
+      - image: circleci/mysql:5.7
+        environment:
+          MYSQL_ROOT_PASSWORD: tsuyoponta4127
+          MYSQL_DATABASE: citem_test
+          MYSQL_USER: root
+    environment:
+      BUNDLE_JOBS: 3
+      BUNDLE_RETRY: 3
+      CITEM_DB_HOST: 127.0.0.1
+      RAILS_ENV: test
+    working_directory: ~/citem
+    steps:
+      - checkout:
+          path: ~/citem
+      - ruby/install-deps
+      - ruby/rspec-test
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - checking:
+          requires:
+            - build
+      - test:
+          requires:
+            - build
