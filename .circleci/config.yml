@@ -11,6 +11,7 @@ jobs:
     steps:
       - checkout:
           path: ~/citem
+      - ruby/bundle-install
       - ruby/install-deps
 
   checking:
