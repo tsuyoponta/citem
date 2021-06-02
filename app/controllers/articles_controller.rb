@@ -35,9 +35,8 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    if @article.destroy
-      redirect_to root_path, warning: '記事を削除しました'
-    end
+    return unless @article.destroy
+    redirect_to root_path, warning: '記事を削除しました'
   end
 
   private
@@ -51,8 +50,7 @@ class ArticlesController < ApplicationController
   end
 
   def move_to_index
-    if current_user.id != @article.user_id
-      redirect_to root_path
-    end
+    return unless current_user.id != @article.user_id
+    redirect_to root_path
   end
 end
