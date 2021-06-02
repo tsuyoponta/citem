@@ -79,3 +79,8 @@ Style/FrozenStringLiteralComment:
 # メソッドパラメータ名の最小文字数を設定
 Naming/MethodParameterName:
  MinNameLength: 1
+
+# ヒアドキュメントが意味のある区切り文字を使用しているかどうかをチェック
+Naming/HeredocDelimiterNaming:
+ Exclude:
+   - "app/helpers/devise_helper.rb"
