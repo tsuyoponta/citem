@@ -36,7 +36,7 @@ class ArticlesController < ApplicationController
 
   def destroy
     return unless @article.destroy
-    
+
     redirect_to root_path, warning: '記事を削除しました'
   end
 
