@@ -40,9 +40,6 @@ jobs:
           path: ~/citem
       - ruby/install-deps
       - run:
-          name: Database setup
-          command: bundle exec rails db:migrate
-      - run:
           name: RSpec test
           command: bundle exec rspec
 
