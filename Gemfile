@@ -60,6 +60,7 @@ gem 'mini_magick'
 gem 'image_processing'
 gem 'pry-rails'
 gem 'dotenv-rails'
+gem 'execjs'
 
 group :production do
   gem 'unicorn'
