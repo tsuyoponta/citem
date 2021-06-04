@@ -41,8 +41,8 @@ jobs:
           path: ~/citem
       - ruby/install-deps
       - node/install-packages:
-          cache-key: yarn.lock
-          pkg-manager: yarn
+          cache-path: ~/citem/node_modules
+          override-ci-command: npm install
       - run:
           name: Database setup
           command: bundle exec rails db:create db:migrate
@@ -53,9 +53,7 @@ workflows:
   build_and_test:
     jobs:
       - build
-      - checking:
-          requires:
-            - build
+      - checking
       - test:
           requires:
             - build
