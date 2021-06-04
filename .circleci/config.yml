@@ -40,9 +40,7 @@ jobs:
       - checkout:
           path: ~/citem
       - ruby/install-deps
-      - node/install-packages:
-          cache-path: ~/citem/node_modules
-          override-ci-command: npm install
+      - node/install
       - run:
           name: Database setup
           command: bundle exec rails db:create db:migrate
