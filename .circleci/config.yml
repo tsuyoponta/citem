@@ -40,10 +40,15 @@ jobs:
       - checkout:
           path: ~/citem
       - ruby/install-deps
-      - node/install
+      - node/install-packages:
+          cache-key: yarn.lock
+          pkg-manager: yarn
       - run:
+          command: 'dockerize -wait tcp://localhost:3000 -timeout 1m'
+          name: Wait for DB
+      - run:
+          command: 'bundle exec rails db:schema:load --trace'
           name: Database setup
-          command: bundle exec rails db:create db:migrate
       - ruby/rspec-test
 
 workflows:
