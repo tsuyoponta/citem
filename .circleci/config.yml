@@ -7,7 +7,7 @@ orbs:
 jobs:
   build:
     docker:
-      - image: circleci/ruby:3.0.1
+      - image: circleci/ruby:3.0.1-node
     working_directory: ~/citem
     steps:
       - checkout:
@@ -16,7 +16,7 @@ jobs:
 
   checking:
     docker:
-      - image: circleci/ruby:3.0.1
+      - image: circleci/ruby:3.0.1-node
     steps:
       - checkout
       - ruby/install-deps
@@ -24,12 +24,12 @@ jobs:
 
   test:
     docker:
-      - image: circleci/ruby:3.0.1
+      - image: circleci/ruby:3.0.1-node
       - image: circleci/mysql:5.7
         environment:
           MYSQL_ROOT_PASSWORD: tsuyoponta4127
           MYSQL_DATABASE: citem_test
-          MYSQL_USER: root
+          MYSQL_USER: user
     environment:
       BUNDLE_JOBS: 3
       BUNDLE_RETRY: 3
